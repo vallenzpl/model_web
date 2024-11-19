@@ -54,3 +54,20 @@ import AboutPage from "../components/about";
   export default routes;
 
 
+
+
+// random nba player generator​
+// random mlb team generator​
+// random us state generator​
+
+// "Keyword"	"Vol"	"CPC"	"Comp"	"Nov 2023"	"Dec 2023"	"Jan 2024"	"Feb 2024"	"Mar 2024"	"Apr 2024"	"May 2024"	"Jun 2024"	"Jul 2024"	"Aug 2024"	"Sep 2024"	"Oct 2024"
+// "random golf club"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random google classroom codes"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random golf club generator"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random god generator"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random google meet codes"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random god name generator"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random goosebumps"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random google classroom codes 2024"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random google search"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""
+// "random google games"	"-"	"-"	"-"	""	""	""	""	""	""	""	""	""	""	""	""

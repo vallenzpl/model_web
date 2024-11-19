@@ -160,7 +160,7 @@ const NavBar: React.FC = () => {
 
             <div style={{display:"flex", justifyContent:"center", alignItems:"center"}} onClick={backToHome}>
                 <img src={logo7} width={50} height={50}/>
-                <p style={{color: '#fff', fontSize: 20, fontWeight: 'bold', marginLeft: 10}} >Random Anythiny Go</p>
+                <p style={{color: '#fff', fontSize: 20, fontWeight: 'bold', marginLeft: 10}} >Random Anything Go</p>
             </div>
 
 {/* 
