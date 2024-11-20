@@ -6,9 +6,13 @@ import { Item } from "./WheelComponent/src/item";
 import TextArea from "antd/es/input/TextArea";
 import wheelProps from "./wheelprops"
 import { CaretRightOutlined, CompassFilled, DatabaseFilled, FireTwoTone, FlagTwoTone, RocketFilled, RocketTwoTone, SignalFilled } from "@ant-design/icons";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const PickerWheel: React.FC<any> = (props) => {
+
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
 
@@ -27,6 +31,54 @@ const PickerWheel: React.FC<any> = (props) => {
       }
     }
 
+    const getPathByWheelName = (value: string) => {
+      let path = '';
+      switch (value) {
+        case 'Fitness Fortune':
+          path = 'fitnessfortune';
+          break;
+        case 'Yes or No':
+          path = 'yesorno';
+          break;
+        case 'Random NFL Teams':
+          path = 'randomnflteams';
+          break;
+        case 'Popular Cities':
+          path = 'popularcities';
+          break;
+
+        case 'Rock, Paper, Scissors':
+          path = 'rockpaperscissors';
+          break;
+      }
+      return path;
+    }
+
+    const getWheelNameByPath = (value: string|undefined) => {
+      if(!value){
+        return '';
+      }
+      let wheelName = '';
+      switch (value) {
+        case 'fitnessfortune':
+          wheelName = 'Fitness Fortune';
+          break;
+        case 'yesorno':
+          wheelName = 'Yes or No';
+          break;
+        case 'randomnflteams':
+          wheelName = 'Random NFL Teams';
+          break;
+        case 'popularcities':
+          wheelName = 'Popular Cities';
+          break;
+        case 'rockpaperscissors':
+          wheelName = 'Rock, Paper, Scissors';
+          break;
+      }
+      return wheelName;
+    }
+
     const wheelCommonDesp = "Introducing our innovative online decision-making aid: the Picker Wheel! \n "
             + "This interactive and engaging tool is perfect for those moments when you're stuck between choices. Whether you're looking for a random name or item selection, our Picker Wheel simplifies the process with a touch of fun.\n " 
             +"Often, the challenge of making decisions can be overwhelming. With our Picker Wheel, simply compile a list of your options or candidates and let the wheel do the rest. It's as easy as spinning the wheel and watching it land on a random choice from your list.\n "
@@ -35,7 +87,14 @@ const PickerWheel: React.FC<any> = (props) => {
 
     const defaultWheelName = 'Fitness Fortune';
     let curWheelName = defaultWheelName;
-    let curWheelProp = findPropByName(curWheelName);;
+    if(location.state){
+      let temp = getWheelNameByPath(location.state['wheelName']);
+      if(temp != ''){
+        curWheelName = temp;
+      }
+    }
+
+    let curWheelProp = findPropByName(curWheelName);
 
     const wheelInitInfo = {
       name: curWheelProp.name,
@@ -47,6 +106,14 @@ const PickerWheel: React.FC<any> = (props) => {
     }
 
     const [wheelInfo, setWheelInfo] = useState(wheelInitInfo);
+
+    useEffect(() => {
+      if(wheelInfo.name != curWheelProp.name){
+        setWheelInfo(generateWheelByProps(curWheelProp));
+      }
+
+    }, [location]);
+
     
     const itemsString = wheelInfo.items.map((item) => {
       if(item && item['label']){
@@ -79,22 +146,30 @@ const PickerWheel: React.FC<any> = (props) => {
     }
 
     const onResetCallback = (cName:string) =>{
-      setWheelInfo(setWheelByName(cName));
+      setWheelInfo(generateWheelByName(cName));
     }
 
     const onWheelChange =(e:any)=>{
       // console.log('点击了'+ JSON.stringify(e.target.textContent));
-      setWheelInfo(setWheelByName(e.target.textContent));
+      // setWheelInfo(setWheelByName(e.target.textContent));
+
+      let realName = getPathByWheelName(e.target.textContent);
+
+      navigate('/pickerWheel/'+realName, { state: { wheelName: realName } });
+
     }
 
-    const setWheelByName = (wName: string)=>{
+    const generateWheelByName = (wName: string)=>{
       curWheelName = wName;
       curWheelProp = findPropByName(curWheelName);
-      
+      return generateWheelByProps(curWheelProp);
+    }
+
+    const generateWheelByProps = (mProps: any)=>{
       return {        
-        name: curWheelProp.name,
-        items: curWheelProp.items,
-        desp: curWheelProp.desp,
+        name: mProps.name,
+        items: mProps.items,
+        desp: mProps.desp,
         resultString: '',
         resultCount: 0,
         isReset: true

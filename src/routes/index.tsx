@@ -19,6 +19,31 @@ import AboutPage from "../components/about";
     },
 
     {
+      path: '/pickerWheel/fitnessfortune',
+      element: <PickerWheel/>
+    },
+
+    {
+      path: '/pickerWheel/yesorno',
+      element: <PickerWheel />
+    },
+
+    {
+      path: '/pickerWheel/randomnflteams',
+      element: <PickerWheel />
+    },
+
+    {
+      path: '/pickerWheel/popularcities',
+      element: <PickerWheel />
+    },
+
+    {
+      path: '/pickerWheel/rockpaperscissors',
+      element: <PickerWheel />
+    },
+
+    {
       path: '/randomizer',
       children: [
         {

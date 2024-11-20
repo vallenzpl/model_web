@@ -62,6 +62,9 @@ const NavBar: React.FC = () => {
 
 
     function findKeyByPath(path: string){
+        if(path && path.toLocaleLowerCase().startsWith('/pickerWheel'.toLocaleLowerCase())){
+            return '1';
+        }
 
         let pathArray: string[] = path.split('/').filter((item)=> item!='');
         // console.log('--->path array:'+pathArray);
