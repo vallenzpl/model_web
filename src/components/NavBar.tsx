@@ -55,16 +55,31 @@ const NavBar: React.FC = () => {
     useEffect(() => {
         let path = location['pathname'];
         let cur = findKeyByPath(path);
-        console.log('path='+path+", cur="+cur)
+        // console.log('path='+path+", cur="+cur)
         setCurrent(cur)
         // setCurrent(findKeyByPath(location['pathname']));
     }, [location]);
 
 
     function findKeyByPath(path: string){
-        if(path && path.toLocaleLowerCase().startsWith('/pickerwheel'.toLocaleLowerCase())){
-            return '1';
+        if(path){
+            if(path.toLocaleLowerCase().startsWith('/home'.toLocaleLowerCase())){
+                return '0';
+            }
+    
+            if(path.toLocaleLowerCase().startsWith('/pickerwheel'.toLocaleLowerCase())){
+                return '1';
+            }
+    
+            if(path.toLocaleLowerCase().startsWith('/randomizer'.toLocaleLowerCase())){
+                return '2';
+            }
+
+            if(path.toLocaleLowerCase().startsWith('/about'.toLocaleLowerCase())){
+                return '3';
+            }
         }
+        
 
         let pathArray: string[] = path.split('/').filter((item)=> item!='');
         // console.log('--->path array:'+pathArray);
