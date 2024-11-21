@@ -14,32 +14,32 @@ import AboutPage from "../components/about";
     },
 
     {
-      path: '/pickerWheel',
+      path: '/pickerwheel',
       element: <PickerWheel/>
     },
 
     {
-      path: '/pickerWheel/fitnessfortune',
+      path: '/pickerwheel/fitnessfortune',
       element: <PickerWheel/>
     },
 
     {
-      path: '/pickerWheel/yesorno',
+      path: '/pickerwheel/yesorno',
       element: <PickerWheel />
     },
 
     {
-      path: '/pickerWheel/randomnflteams',
+      path: '/pickerwheel/randomnflteams',
       element: <PickerWheel />
     },
 
     {
-      path: '/pickerWheel/popularcities',
+      path: '/pickerwheel/popularcities',
       element: <PickerWheel />
     },
 
     {
-      path: '/pickerWheel/rockpaperscissors',
+      path: '/pickerwheel/rockpaperscissors',
       element: <PickerWheel />
     },
 

@@ -62,7 +62,7 @@ const NavBar: React.FC = () => {
 
 
     function findKeyByPath(path: string){
-        if(path && path.toLocaleLowerCase().startsWith('/pickerWheel'.toLocaleLowerCase())){
+        if(path && path.toLocaleLowerCase().startsWith('/pickerwheel'.toLocaleLowerCase())){
             return '1';
         }
 
@@ -135,13 +135,13 @@ const NavBar: React.FC = () => {
     }
 
     const onClick: MenuProps['onClick'] = (e) => {
-        console.log('click ', e.key);
+        // console.log('click ', e.key);
         setCurrent(e.key);
 
         let lab = findLabel(e.key, menuItems);
-        console.log('找到的lab= ', lab);
+        // console.log('找到的lab= ', lab);
 
-        navigate(lab);
+        navigate(lab.toLocaleLowerCase());
 
         setCurrentBC(lab)
 

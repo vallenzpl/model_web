@@ -92,6 +92,17 @@ const PickerWheel: React.FC<any> = (props) => {
       if(temp != ''){
         curWheelName = temp;
       }
+    }else {
+      let path = location['pathname'];
+      let pathArray: string[] = path.split('/').filter((item)=> item!='');
+      if(pathArray.length>1){
+        for(let item of pathArray){
+          if(item.toLocaleLowerCase() != 'pickerwheel'){
+            curWheelName = getWheelNameByPath(item);
+            break;
+          }
+        }
+      }
     }
 
     let curWheelProp = findPropByName(curWheelName);
@@ -155,7 +166,7 @@ const PickerWheel: React.FC<any> = (props) => {
 
       let realName = getPathByWheelName(e.target.textContent);
 
-      navigate('/pickerWheel/'+realName, { state: { wheelName: realName } });
+      navigate('/pickerwheel/'+realName, { state: { wheelName: realName } });
 
     }
 

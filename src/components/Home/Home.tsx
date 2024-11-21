@@ -70,7 +70,7 @@ const Home: React.FC = () => {
                 <div style={{}}>
                   <div style={{fontSize: 30, fontWeight: 'bold', lineHeight: 2.5}}>
                     When you're faced with a tough decision, 
-                    <div style={{color: '#ad8562'}}><a href='/pickerWheel' style={{color: '#ad8562', textDecorationLine: "underline"}}>spin the wheel</a>
+                    <div style={{color: '#ad8562'}}><a href='/pickerwheel' style={{color: '#ad8562', textDecorationLine: "underline"}}>spin the wheel</a>
                     &nbsp; and let fate decide.</div> 
                     
                   </div>
