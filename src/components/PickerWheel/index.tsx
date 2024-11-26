@@ -1,12 +1,13 @@
-import { Affix, Badge, Button, Card, Collapse, CollapseProps, ConfigProvider, Divider, Flex, FloatButton, Input, Layout, Space, Tabs, TabsProps, theme } from "antd";
+import { Avatar, Button, Card, Col, Collapse, ConfigProvider, Divider, Flex, FloatButton, Input, Layout, List, Row, Space, Tabs, TabsProps, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import MWheel from "./WheelComponent/MWheel";
 import { Item } from "./WheelComponent/src/item";
 import TextArea from "antd/es/input/TextArea";
 import wheelProps from "./wheelprops"
-import { CaretRightOutlined, CompassFilled, DatabaseFilled, FireTwoTone, FlagTwoTone, RocketFilled, RocketTwoTone, SignalFilled } from "@ant-design/icons";
+import { FireTwoTone} from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
+import mlbTeamGroups from './mlbTeam'
 
 
 const PickerWheel: React.FC<any> = (props) => {
@@ -31,53 +32,59 @@ const PickerWheel: React.FC<any> = (props) => {
       }
     }
 
-    const getPathByWheelName = (value: string) => {
-      let path = '';
-      switch (value) {
-        case 'Fitness Fortune':
-          path = 'fitnessfortune';
-          break;
-        case 'Yes or No':
-          path = 'yesorno';
-          break;
-        case 'Random NFL Teams':
-          path = 'randomnflteams';
-          break;
-        case 'Popular Cities':
-          path = 'popularcities';
-          break;
-
-        case 'Rock, Paper, Scissors':
-          path = 'rockpaperscissors';
-          break;
-      }
-      return path;
-    }
-
-    const getWheelNameByPath = (value: string|undefined) => {
+    const translateValue = (value: string | undefined) => {
       if(!value){
         return '';
       }
-      let wheelName = '';
+
+      let result = '';
       switch (value) {
+        case 'Fitness Fortune':
+          result = 'fitnessfortune';
+          break;
+        case 'Yes or No':
+          result = 'yesorno';
+          break;
+        case 'Random NFL Teams':
+          result = 'randomnflteams';
+          break;
+        case 'Popular Cities':
+          result = 'popularcities';
+          break;
+        case 'Rock, Paper, Scissors':
+          result = 'rockpaperscissors';
+          break;
+
+        ///////////////////////////
         case 'fitnessfortune':
-          wheelName = 'Fitness Fortune';
+          result = 'Fitness Fortune';
           break;
         case 'yesorno':
-          wheelName = 'Yes or No';
+          result = 'Yes or No';
           break;
         case 'randomnflteams':
-          wheelName = 'Random NFL Teams';
+          result = 'Random NFL Teams';
           break;
         case 'popularcities':
-          wheelName = 'Popular Cities';
+          result = 'Popular Cities';
           break;
         case 'rockpaperscissors':
-          wheelName = 'Rock, Paper, Scissors';
+          result = 'Rock, Paper, Scissors';
           break;
+
+
+        case 'Random MLB Team':
+          result = 'random-mlb-team';
+          break;     
+        case 'random-mlb-team':
+          result = 'Random MLB Team';
+          break;
+
       }
-      return wheelName;
+      return result;
     }
+
+
 
     const wheelCommonDesp = "Introducing our innovative online decision-making aid: the Picker Wheel! \n "
             + "This interactive and engaging tool is perfect for those moments when you're stuck between choices. Whether you're looking for a random name or item selection, our Picker Wheel simplifies the process with a touch of fun.\n " 
@@ -85,10 +92,10 @@ const PickerWheel: React.FC<any> = (props) => {
             +"To use our Picker Wheel, start by customizing the names in the provided textarea. Enter each name on a new line, and our tool will arrange them around the wheel. With just a click, the wheel springs into action, spinning for a few seconds before landing on a selection from your list. It's that simple!\n "
             +"The Picker Wheel is not just a random name picker; it's a game-changer for group activities, brainstorming sessions, or any scenario where a bit of luck can guide the way. So, the next time you're faced with a tough decision, spin the wheel and let fate decide. It's the perfect blend of simplicity and excitement, making every choice an adventure.";
 
-    const defaultWheelName = 'Fitness Fortune';
+    const defaultWheelName = 'Random MLB Team';
     let curWheelName = defaultWheelName;
     if(location.state){
-      let temp = getWheelNameByPath(location.state['wheelName']);
+      let temp = translateValue(location.state['wheelName']);
       if(temp != ''){
         curWheelName = temp;
       }
@@ -98,7 +105,7 @@ const PickerWheel: React.FC<any> = (props) => {
       if(pathArray.length>1){
         for(let item of pathArray){
           if(item.toLocaleLowerCase() != 'pickerwheel'){
-            curWheelName = getWheelNameByPath(item);
+            curWheelName = translateValue(item);
             break;
           }
         }
@@ -164,7 +171,7 @@ const PickerWheel: React.FC<any> = (props) => {
       // console.log('点击了'+ JSON.stringify(e.target.textContent));
       // setWheelInfo(setWheelByName(e.target.textContent));
 
-      let realName = getPathByWheelName(e.target.textContent);
+      let realName = translateValue(e.target.textContent);
 
       navigate('/pickerwheel/'+realName, { state: { wheelName: realName } });
 
@@ -247,10 +254,41 @@ const PickerWheel: React.FC<any> = (props) => {
                       </Flex>
                     </div>
 
-                  
+                    
+                    {curWheelName == 'Random MLB Team' &&
+                      <div style={{paddingLeft: 30, paddingRight: 30, margin: 25}}>
+                        <Row gutter={[16, 24]}>
+                            {
+                              mlbTeamGroups.map(groupItem => (
+                                <Col span={8}>
+                                  <Card size="small" title={groupItem.nm} style={{width: 320, backgroundColor: '#f7f7f6' }}>
+                                    <List
+                                      className="demo-loadmore-list"
+                                      itemLayout="vertical"
+                                      dataSource={groupItem.tms}
+                                      renderItem={(item) => (
+                                        <List.Item>
+                                          <Flex align="center" justify="flex-start" vertical={false} gap="middle">
+                                            <Avatar src={item.p} />
+                                            <p style={{fontSize: 16, fontWeight:"bold"}}>{item.n}</p>
+                                          </Flex> 
+                                        </List.Item>
+                                      )}
+                                    />
+                                  </Card>
+                                </Col>
+                              ))
+                            }
+                        </Row>
+                      </div>
+                    }
+
+                      
                     <Flex align="flex-start" justify="center" >
-                      <Space direction="vertical" size="middle" style={{ width: '80%', marginTop: '50px' }}>
-                        <Collapse
+                      <Space direction="vertical" size="middle" style={{ width: '90%', marginTop: 50, marginBottom: 30 }}>
+                        {
+                          wheelInfo.desp && (wheelInfo.desp!='') &&
+                          <Collapse
                             items={[{ key: '1', label: 'Introducing the '+wheelInfo.name, children: 
                                 <div style={{fontSize:'15px'}}>
                                   {wheelInfo.desp.split('\n').map((line: string, index: number) => (
@@ -259,9 +297,11 @@ const PickerWheel: React.FC<any> = (props) => {
                                 </div>
                               }]}
                             defaultActiveKey={['1']}
-                            style={{ background: colorBgContainer, fontSize:'18px', fontWeight: "bold" }}
+                            style={{ background: colorBgContainer, backgroundColor: '#f7f7f6', fontSize:'18px', fontWeight: "bold" }}
                             expandIconPosition="start"
                           />
+                        }
+                        
 
                         <Collapse
                             items={[{ key: '1', label: 'What is the picker wheel?', children: 
@@ -272,7 +312,7 @@ const PickerWheel: React.FC<any> = (props) => {
                                 </div>
                               }]}
                             defaultActiveKey={['1']}
-                            style={{ background: colorBgContainer, fontSize:'18px', fontWeight: "bold" }}
+                            style={{ background: colorBgContainer, backgroundColor: '#f7f7f6', fontSize:'18px', fontWeight: "bold" }}
                             expandIconPosition="start"
                           />
 
@@ -285,10 +325,10 @@ const PickerWheel: React.FC<any> = (props) => {
             
             <FloatButton.Group style={{
                 position: 'fixed',
-                right: 20,
+                right: 10,
                 top: '10%',
               }}>
-              <Flex vertical justify="center">
+              <Flex vertical justify="center" style={{backgroundColor: '#c9b5a159', borderRadius: 12}}>
     
                 <Divider >
                   <div style={{ textAlign: 'center' }}>
@@ -297,12 +337,12 @@ const PickerWheel: React.FC<any> = (props) => {
                   </div>
                 </Divider>
 
+                <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Random MLB Team</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Fitness Fortune</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Yes or No</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Random NFL Teams</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Popular Cities</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Rock, Paper, Scissors</Button>
-
 
               </Flex>
             </FloatButton.Group>

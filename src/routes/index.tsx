@@ -34,6 +34,11 @@ import AboutPage from "../components/about";
     },
 
     {
+      path: '/pickerwheel/random-mlb-team',
+      element: <PickerWheel />
+    },
+
+    {
       path: '/pickerwheel/popularcities',
       element: <PickerWheel />
     },
@@ -82,7 +87,6 @@ import AboutPage from "../components/about";
 
 
 // random nba player generator​
-// random mlb team generator​
 // random us state generator​
 
 // "Keyword"	"Vol"	"CPC"	"Comp"	"Nov 2023"	"Dec 2023"	"Jan 2024"	"Feb 2024"	"Mar 2024"	"Apr 2024"	"May 2024"	"Jun 2024"	"Jul 2024"	"Aug 2024"	"Sep 2024"	"Oct 2024"
