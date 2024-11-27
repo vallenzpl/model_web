@@ -60,7 +60,7 @@ const Home: React.FC = () => {
 
               <Flex vertical={false} align="center" justify="flex-start" gap="middle">
 
-                <Image src={logo5} height={45}/>
+                <Image src={logo5} width={45} height={45}/>
 
                 <h1 style={{color: '#444242', fontSize: 32}}>Make decisions easily with our picker wheel ! </h1>
 
