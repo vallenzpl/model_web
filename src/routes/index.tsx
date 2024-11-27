@@ -76,7 +76,7 @@ import AboutPage from "../components/about";
 
 
     {
-      path: '/',
+      path: '/*',
       element: <Navigate to="/home"/>
     }
   ]
