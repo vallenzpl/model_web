@@ -224,7 +224,7 @@ const PickerWheel: React.FC<any> = (props) => {
     return (
         <Layout>
 
-            <Content style={{ padding: '0 48px'}}>
+            <Content style={{ padding: '0 80px'}}>
                 <Layout style={{ padding: '10px 0', background: colorBgContainer, borderRadius: borderRadiusLG}}>
                 
                     <div style={{padding: 5, minHeight: 380}}>

@@ -82,7 +82,7 @@ const RandomCountry: React.FC = () => {
     return (
 
         <Layout>
-            <Content style={{ padding: '0 48px'}}>
+            <Content style={{ padding: '0 80px'}}>
                 <Layout style={{ padding: '10px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}>
                 
                     <div style={{ padding: 20, minHeight: 80 }}>
@@ -98,7 +98,7 @@ const RandomCountry: React.FC = () => {
                     </div>
 
                     <Flex align="flex-start" justify="center" >
-                      <Space direction="vertical" size="middle" style={{ width: '85%', marginTop: '50px' }}>
+                      <Space direction="vertical" size="middle" style={{ width: '85%', marginTop: '50px', marginBottom: 30 }}>
                         <Collapse
                             items={[{ key: '1', label: 'Introducing the Random Country', children: 
                                 <div style={{fontSize:'15px'}}>

@@ -29,7 +29,7 @@ const AboutPage: React.FC = () => {
     return (
 
         <Layout>
-            <Content style={{ padding: '0 48px'}}>
+            <Content style={{ padding: '0 80px'}}>
                 <Layout style={{ padding: '10px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}>
 
                     <Flex style={{padding: 20}} vertical={false} align="center" justify="flex-start" gap="middle">

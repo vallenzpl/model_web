@@ -48,7 +48,7 @@ const Home: React.FC = () => {
   
     <Layout>
         
-      <Content style={{ padding: '0 48px' }}>
+      <Content style={{ padding: '0 80px' }}>
       
           <Layout style={{ padding: '10px 0', background: colorBgContainer, borderRadius: borderRadiusLG }}>
 
