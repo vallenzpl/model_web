@@ -39,6 +39,11 @@ import AboutPage from "../components/about";
     },
 
     {
+      path: '/pickerwheel/random-us-states',
+      element: <PickerWheel />
+    },
+
+    {
       path: '/pickerwheel/popularcities',
       element: <PickerWheel />
     },

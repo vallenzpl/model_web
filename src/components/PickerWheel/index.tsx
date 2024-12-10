@@ -8,6 +8,7 @@ import wheelProps from "./wheelprops"
 import { FireTwoTone} from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import mlbTeamGroups from './mlbTeam'
+import usStatesGroups from './usstates'
 
 
 const PickerWheel: React.FC<any> = (props) => {
@@ -18,6 +19,10 @@ const PickerWheel: React.FC<any> = (props) => {
     const { token: { colorBgContainer, borderRadiusLG } } = theme.useToken();
 
     const findPropByName = (destName: string) => {
+      if(destName == 'Random US States'){
+        return usStatesGroups;
+      }
+
       if(wheelProps){
         for(let prop of wheelProps){
           if(prop && prop['name'] === destName){
@@ -78,6 +83,13 @@ const PickerWheel: React.FC<any> = (props) => {
           break;     
         case 'random-mlb-team':
           result = 'Random MLB Team';
+          break;
+
+        case 'Random US States':
+          result = 'random-us-states';
+          break;     
+        case 'random-us-states':
+          result = 'Random US States';
           break;
 
       }
@@ -341,6 +353,7 @@ const PickerWheel: React.FC<any> = (props) => {
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Fitness Fortune</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Yes or No</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Random NFL Teams</Button>
+                <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Random US States</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Popular Cities</Button>
                 <Button type="text" onClick={onWheelChange} style={{fontSize:'13px', fontWeight: 'bold'}}>Rock, Paper, Scissors</Button>
 
